@@ -66,14 +66,16 @@
     <Compile Include="Assets\Scripts\AttackType_Enum.cs" />
     <Compile Include="Assets\Scripts\BlueGameManager.cs" />
     <Compile Include="Assets\Scripts\CardScript.cs" />
+    <Compile Include="Assets\Scripts\MainAttackScripts\MainAttack.cs" />
+    <Compile Include="Assets\Scripts\MainAttackScripts\TargetMeleeAttack.cs" />
     <Compile Include="Assets\Scripts\TroopAttack.cs" />
     <Compile Include="Assets\Scripts\TroopHealth.cs" />
     <Compile Include="Assets\Scripts\TroopPathFinding.cs" />
     <Compile Include="Assets\Scripts\Troop_Attack.cs" />
+    <Compile Include="Assets\Scripts\animationEvents.cs" />
     <Compile Include="Assets\Scripts\buildingPositionHolder.cs" />
     <Compile Include="Assets\Scripts\cardTemplate.cs" />
     <Compile Include="Assets\Scripts\troopInfo.cs" />
-    <Compile Include="Assets\animationEvents.cs" />
     <None Include="Assets\Knight Files\Read Me.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />

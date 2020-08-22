@@ -11,6 +11,7 @@ public class TroopPathFinding : MonoBehaviour
     public Seeker seeker;
     public troopInfo troop_Info;
     public TroopAttack troopAttack;
+    public MainAttack mainAttack;
 
     public Animator anim;
 
@@ -43,7 +44,7 @@ public class TroopPathFinding : MonoBehaviour
         seeker = GetComponent<Seeker>();
         aiPath = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
-
+        mainAttack = GetComponent<MainAttack>();
 
         agroRange = troop_Info.cardInfo.agro_Range;
         attackRange = troop_Info.cardInfo.attack_Range;
@@ -109,6 +110,7 @@ public class TroopPathFinding : MonoBehaviour
           
             anim.SetBool("isAttacking", false);
             isAttacking = false;
+
         }
        
     }
@@ -138,16 +140,29 @@ public class TroopPathFinding : MonoBehaviour
             isTargetingTower = false;
             isTargetingEnemy = true;
         }
-        else if (attackColliders.Length == 0) 
+     
+        else if (agroColliders.Length == 0 || towerInAgroRange(agroColliders)) 
         {
             isTargetingEnemy = false;
             isTargetingTower = true;
             isAttacking = false;
             calculateTowerTarget();
         }
+
+        mainAttack.SetAttackTarget(attackTarget);
         startAttack(attackTarget);
     }
-
+    private bool towerInAgroRange (Collider2D[] agroColliders)
+    {
+        for (int i = 0; i < agroColliders.Length; i++)
+        {
+            if (!agroColliders[i].tag.Equals("Tower"))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
     //calculates which target in the attack range is the closest
     private Transform findClosestTarget(Collider2D[] agroColliders)
     {
@@ -165,6 +180,7 @@ public class TroopPathFinding : MonoBehaviour
         }
         return newTarget;
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
